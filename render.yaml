@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: telegram-video-downloader-bot
+    env: python
+    region: frankfurt   # siz xohlagan region: oregon, singapore va h.k.
+    plan: free
+    buildCommand: |
+      apt-get update && apt-get install -y ffmpeg
+      pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false  # bu degani: siz tokenni Render dashboard'da kiritasiz
